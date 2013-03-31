@@ -7,7 +7,7 @@
 **Realtime Taks**, is simple todo list based off [TodoMVC](http://todomvc.com/), [AngularJS](https://www.angularjs.org),
 and the [Google Drive Realtime API](https://developers.google.com/drive/realtime).
 
-You can try out the app on its [live instance](https://googledrive.github.com/realtime-tasks).
+You can try out the app on its [live instance](http://googledrive.github.com/realtime-tasks).
 
 ## Installation and Configuration
 
@@ -46,7 +46,7 @@ First, you need to activate the Drive API for your app. You can do it by configu
 
 ### Setup your App information
 
-You should now have your **Client ID** and your **App ID**.  Update the settings in `config.js` appropriately.
+You should now have your **Client ID** and your **App ID**.  Update the `CONFIG` object in `app.js` appropriately.
 
 ### Deploy, run that's it!
 
