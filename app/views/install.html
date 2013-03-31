@@ -1,0 +1,42 @@
+<section id="todoapp">
+    <header id="header">
+        <h1>todos</h1>
+    </header>
+    <section id="main">
+        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul id="todo-list">
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox" checked disabled>
+                    <label>A simple todo app</label>
+                </div>
+            </li>
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox" checked disabled>
+                    <label>Based on TodoMVC</label>
+                </div>
+            </li>
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox" checked disabled>
+                    <label>Built with the Google Drive Realtime API</label>
+                </div>
+            </li>
+            <li>
+                <div class="view">
+                    <input class="toggle" type="checkbox" disabled>
+                    <label>Sign in to get started</label>
+                </div>
+            </li>
+        </ul>
+    </section>
+</section>
+
+<section id="signinButton">
+    <button id="signin" ng-click="authorize()">
+        <span class="buttonText">Sign in with Google</span>
+    </button>
+</section>
+
