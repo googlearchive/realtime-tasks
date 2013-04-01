@@ -4,14 +4,14 @@
 
 ## Overview
 
-**Realtime Taks**, is simple todo list based off [TodoMVC](http://todomvc.com/), [AngularJS](https://www.angularjs.org),
+A simple todo list based off [TodoMVC](http://todomvc.com/), [AngularJS](https://www.angularjs.org),
 and the [Google Drive Realtime API](https://developers.google.com/drive/realtime).
 
 You can try out the app on its [live instance](http://googledrive.github.com/realtime-tasks).
 
 ## Installation and Configuration
 
-The project can run on any static web server. Ready to run source files are in `dist`.
+The project can run on any static web server.
 
 ## Building from source
 
