@@ -24,7 +24,7 @@ angular.module('todos').directive('collaborative',
       this.element = element;
       this.string = string;
       this.scope = scope;
-ß
+
       this._insertListener = angular.bind(this, function (event) {
         if (!event.isLocal) {
           this.updateText(event.index, event.text.length);
