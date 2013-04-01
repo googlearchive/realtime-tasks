@@ -9,7 +9,7 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
    * @param document
    * @constructor
    */
-    function ($scope, $routeParams, document) {
+  function ($scope, $routeParams, document) {
     $scope.fileId = $routeParams.fileId;
     $scope.filter = $routeParams.filter;
 
@@ -93,20 +93,21 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
       { completed: false } : (filter === 'completed') ?
       { completed: true } : null;
     });
-
-
   }]
 );
 
-angular.module('todos').controller('CollaboratorsCtrl', ['$scope',
+angular.module('todos').controller('CollaboratorsCtrl', ['$scope', 'config',
   /**
    * Controller for displaying the list of current collaborators. Expects
    * to inherit the document from a parent scope.
    *
    * @param {angular.Scope} $scope
+   * @param {object} config
    * @constructor
    */
-    function ($scope) {
+  function ($scope, config) {
+    var appId = config.clientId.split('.').shift();
+
     var collaboratorListener = function () {
       $scope.$apply(function () {
         $scope.collaborators = $scope.document.getCollaborators();
@@ -124,6 +125,13 @@ angular.module('todos').controller('CollaboratorsCtrl', ['$scope',
         document.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
       }
     });
+
+    $scope.share = function () {
+      var fileId = this.fileId;
+      var client = new gapi.drive.share.ShareClient(appId);
+      client.setItemIds([fileId]);
+      client.showSettingsDialog();
+    };
 
   }]
 );
