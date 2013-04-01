@@ -11,7 +11,7 @@ You can try out the app on its [live instance](http://googledrive.github.com/rea
 
 ## Installation and Configuration
 
-The project can run on any static web server. Ready to run source files are in `dist`.
+The project can run on any static web server.
 
 ## Building from source
 
