@@ -1,6 +1,6 @@
 # Collaborative Todos
 
-[![Todos Screenshot](https://github.com/googledrive/realtime-tasks/raw/master/screenshot.png)](https://realtime-cube.appspot.com/)
+[![Todos Screenshot](https://github.com/googledrive/realtime-tasks/raw/master/screenshot.png)](http://googledrive.github.com/realtime-tasks)
 
 ## Overview
 
