@@ -116,6 +116,7 @@ app.module.run(['$rootScope', '$location', 'storage', function ($rootScope, $loc
  * Bootstrap the app
  */
 gapi.load('auth:client:drive-share:drive-realtime', function () {
+  gapi.auth.init();
 
   // Monkey patch collaborative string for ng-model compatibility
   Object.defineProperty(gapi.drive.realtime.CollaborativeString.prototype, 'text', {
