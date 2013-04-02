@@ -135,8 +135,8 @@ angular.module('todos').controller('CollaboratorsCtrl', ['$scope', 'config',
     $scope.$on('$destroy', function () {
       var doc = $scope.document;
       if (doc) {
-        document.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, collaboratorListener);
-        document.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
+        doc.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, collaboratorListener);
+        doc.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
       }
     });
 
