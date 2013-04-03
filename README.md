@@ -33,7 +33,7 @@ First, you need to activate the Drive API for your app. You can do it by configu
 - Create an API project in the [Google APIs Console](https://developers.google.com/console).
 - Select the "Services" tab and enable the Drive API.
 - Select the "API Access" tab in your API project, and click "Create an OAuth 2.0 client ID".
-- In the Branding Information section, provide a name for your application (e.g. "Realtime Cube"), and click Next. Providing a product logo is optional.
+- In the Branding Information section, provide a name for your application (e.g. "Realtime Tasks"), and click Next. Providing a product logo is optional.
 - In the Client ID Settings section, do the following:
   - Select Web application for the Application type
   - Click the more options link next to the heading, Your site or hostname.
@@ -43,6 +43,12 @@ First, you need to activate the Drive API for your app. You can do it by configu
 - List your hostname in JavaScript origins in the Client ID settings.
 - Go to the **Drive SDK** page and copy the **App ID**.
 
+To enable integration with the Drive UI, go the **Drive SDK** page.
+
+- Set the **Open URL** to `http://localhost/#/todos/{ids}/?user={userId}` 
+- Check the **Create With** option and set the **New URL** to `http://localhost/#/create?user={userId}`
+
+Adjust the above URLs as needed for the correct hostname or path.
 
 ### Setup your App information
 
