@@ -45,10 +45,10 @@ First, you need to activate the Drive API for your app. You can do it by configu
 
 To enable integration with the Drive UI, go the **Drive SDK** page.
 
-- Set the **Open URL** to `http://localhost/#/todos/{ids}/?user={userId}` 
-- Check the **Create With** option and set the **New URL** to `http://localhost/#/create?user={userId}`
+- Set the **Open URL** to `http://YOURHOST/#/todos/{ids}/?user={userId}` 
+- Check the **Create With** option and set the **New URL** to `http://YOURHOST/#/create?user={userId}`
 
-Adjust the above URLs as needed for the correct hostname or path.
+Adjust the above URLs as needed for the correct hostname or path. Localhost is currently not allowed.
 
 ### Setup your App information
 
