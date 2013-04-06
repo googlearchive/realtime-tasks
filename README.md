@@ -1,13 +1,13 @@
 # Collaborative Todos
 
-[![Todos Screenshot](https://github.com/googledrive/realtime-tasks/raw/master/screenshot.png)](http://googledrive.github.com/realtime-tasks)
+[![Todos Screenshot](https://github.com/googledrive/realtime-tasks/raw/master/screenshot.png)](http://googledrive.github.io/realtime-tasks)
 
 ## Overview
 
 A simple todo list based off [TodoMVC](http://todomvc.com/), [AngularJS](https://www.angularjs.org),
 and the [Google Drive Realtime API](https://developers.google.com/drive/realtime).
 
-You can try out the app on its [live instance](http://googledrive.github.com/realtime-tasks).
+You can try out the app on its [live instance](http://googledrive.github.io/realtime-tasks).
 
 ## Installation and Configuration
 
