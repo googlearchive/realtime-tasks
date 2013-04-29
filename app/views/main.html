@@ -30,7 +30,7 @@
             </li>
         </ul>
     </section>
-    <footer id="footer" ng-show="todos.length" ng-cloak>
+    <footer id="footer" ng-cloak>
       <span id="todo-count"><strong>{{remainingCount()}}</strong>
         <ng-pluralize count="remainingCount()" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
       </span>
@@ -45,6 +45,8 @@
                 <a ng-class="{selected: filter == 'completed'}" data-ng-href="#/todos/{{fileId}}/completed">Completed</a>
             </li>
         </ul>
+        <button id="undo" ng-click="undo()" ng-show="canUndo()">Undo</button>
+        <button id="redo" ng-click="redo()" ng-show="canRedo()">Redo</button>
         <button id="clear-completed" ng-click="clearDoneTodos()" ng-show="remainingCount() < todos.length">Clear completed ({{todos.length - remainingCount()}})</button>
     </footer>
 </section>

@@ -23,12 +23,12 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
    * @param document
    * @constructor
    */
-  function ($scope, $routeParams, document) {
+  function ($scope, $routeParams, realtimeDocument) {
     $scope.fileId = $routeParams.fileId;
     $scope.filter = $routeParams.filter;
 
-    $scope.document = document;
-    $scope.todos = document.getModel().getRoot().get('todos');
+    $scope.realtimeDocument = realtimeDocument;
+    $scope.todos = realtimeDocument.getModel().getRoot().get('todos');
     $scope.newTodo = '';
 
 
@@ -50,9 +50,11 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
      */
     $scope.addTodo = function () {
       if (this.newTodo) {
-        var todo = document.getModel().create(app.Todo, this.newTodo);
+        realtimeDocument.getModel().beginCompoundOperation();
+        var todo = realtimeDocument.getModel().create(app.Todo, this.newTodo);
         this.newTodo = '';
         this.todos.push(todo);
+        realtimeDocument.getModel().endCompoundOperation();
       }
     };
 
@@ -84,11 +86,13 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
      */
     $scope.clearDoneTodos = function () {
       var todos = this.todos;
+      realtimeDocument.getModel().beginCompoundOperation();
       angular.forEach(this.todos.asArray(), function (todo) {
         if (todo.completed) {
           todos.removeValue(todo);
         }
       });
+      realtimeDocument.getModel().endCompoundOperation();
     };
 
     /**
@@ -97,9 +101,11 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
      * @param done
      */
     $scope.markAll = function (done) {
+      realtimeDocument.getModel().beginCompoundOperation();
       angular.forEach(this.todos.asArray(), function (todo) {
         todo.completed = done;
       });
+      realtimeDocument.getModel().endCompoundOperation();
     };
 
     $scope.$watch('filter', function (filter) {
@@ -107,6 +113,36 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
       { completed: false } : (filter === 'completed') ?
       { completed: true } : null;
     });
+    
+    /**
+    * Undo local changes
+    */
+    $scope.undo = function() {
+      realtimeDocument.getModel().undo();        
+    }
+    
+    /**
+    * Check if there are undoable changes.
+    * @returns {boolean}
+    */
+    $scope.canUndo = function() {
+      return realtimeDocument.getModel().canUndo;
+    }
+
+    /**
+    * Undo local changes
+    */
+    $scope.redo = function() {
+      realtimeDocument.getModel().redo();        
+    }
+    
+    /**
+    * Check if there are redoable changes.
+    * @returns {boolean}
+    */
+    $scope.canRedo = function() {
+      return realtimeDocument.getModel().canRedo;
+    }
   }]
 );
 
@@ -124,16 +160,16 @@ angular.module('todos').controller('CollaboratorsCtrl', ['$scope', 'config',
 
     var collaboratorListener = function () {
       $scope.$apply(function () {
-        $scope.collaborators = $scope.document.getCollaborators();
+        $scope.collaborators = $scope.realtimeDocument.getCollaborators();
       });
     };
-    $scope.collaborators = $scope.document.getCollaborators();
+    $scope.collaborators = $scope.realtimeDocument.getCollaborators();
 
-    $scope.document.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, collaboratorListener);
-    $scope.document.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
+    $scope.realtimeDocument.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, collaboratorListener);
+    $scope.realtimeDocument.addEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
 
     $scope.$on('$destroy', function () {
-      var doc = $scope.document;
+      var doc = $scope.realtimeDocument;
       if (doc) {
         doc.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_LEFT, collaboratorListener);
         doc.removeEventListener(gapi.drive.realtime.EventType.COLLABORATOR_JOINED, collaboratorListener);
