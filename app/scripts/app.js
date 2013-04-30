@@ -120,12 +120,8 @@ gapi.load('auth:client:drive-share:drive-realtime', function () {
 
   // Monkey patch collaborative string for ng-model compatibility
   Object.defineProperty(gapi.drive.realtime.CollaborativeString.prototype, 'text', {
-    set: function (value) {
-      return this.setText(value);
-    },
-    get: function () {
-      return this.getText();
-    }
+    set: gapi.drive.realtime.CollaborativeString.prototype.setText,
+    get: gapi.drive.realtime.CollaborativeString.prototype.getText
   });
 
   // Register our Todo class

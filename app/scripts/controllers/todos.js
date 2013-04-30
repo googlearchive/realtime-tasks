@@ -117,32 +117,32 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
     /**
     * Undo local changes
     */
-    $scope.undo = function() {
-      realtimeDocument.getModel().undo();        
-    }
+    $scope.undo = function () {
+      realtimeDocument.getModel().undo();
+    };
     
     /**
     * Check if there are undoable changes.
     * @returns {boolean}
     */
-    $scope.canUndo = function() {
+    $scope.canUndo = function () {
       return realtimeDocument.getModel().canUndo;
-    }
+    };
 
     /**
     * Undo local changes
     */
-    $scope.redo = function() {
-      realtimeDocument.getModel().redo();        
-    }
+    $scope.redo = function () {
+      realtimeDocument.getModel().redo();
+    };
     
     /**
     * Check if there are redoable changes.
     * @returns {boolean}
     */
-    $scope.canRedo = function() {
+    $scope.canRedo = function () {
       return realtimeDocument.getModel().canRedo;
-    }
+    };
   }]
 );
 
