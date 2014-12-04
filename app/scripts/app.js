@@ -16,7 +16,6 @@
 
 var CONFIG = {
   clientId: '502747173299.apps.googleusercontent.com',
-  apiKey: 'AIzaSyA8uaDCmQ1mvhjXQZvF55vW9ygO_fAYKRs',
   scopes: [
     'https://www.googleapis.com/auth/drive.file',
     'https://www.googleapis.com/auth/drive.install'
@@ -43,8 +42,19 @@ app.Todo.prototype.initialize = function (title) {
   var model = gapi.drive.realtime.custom.getModel(this);
   this.title = model.createString(title);
   this.completed = false;
+  this.setup();
 };
 
+/**
+ * Adds a "text" property to collaborative strings for ng-model compatibility
+ * after a model is created or loaded.
+ */
+app.Todo.prototype.setup = function() {
+  Object.defineProperty(this.title, 'text', {
+    set: this.title.setText,
+    get: this.title.getText
+  });
+};
 
 /**
  * Loads the document. Used to inject the collaborative document
@@ -118,17 +128,13 @@ app.module.run(['$rootScope', '$location', 'storage', function ($rootScope, $loc
 gapi.load('auth:client:drive-share:drive-realtime', function () {
   gapi.auth.init();
 
-  // Monkey patch collaborative string for ng-model compatibility
-  Object.defineProperty(gapi.drive.realtime.CollaborativeString.prototype, 'text', {
-    set: gapi.drive.realtime.CollaborativeString.prototype.setText,
-    get: gapi.drive.realtime.CollaborativeString.prototype.getText
-  });
-
   // Register our Todo class
   app.Todo.prototype.title = gapi.drive.realtime.custom.collaborativeField('title');
   app.Todo.prototype.completed = gapi.drive.realtime.custom.collaborativeField('completed');
+
   gapi.drive.realtime.custom.registerType(app.Todo, 'todo');
   gapi.drive.realtime.custom.setInitializer(app.Todo, app.Todo.prototype.initialize);
+  gapi.drive.realtime.custom.setOnLoaded(app.Todo, app.Todo.prototype.setup);
 
   $(document).ready(function () {
     angular.bootstrap(document, ['todos']);

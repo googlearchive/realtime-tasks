@@ -113,14 +113,14 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
       { completed: false } : (filter === 'completed') ?
       { completed: true } : null;
     });
-    
+
     /**
     * Undo local changes
     */
     $scope.undo = function () {
       realtimeDocument.getModel().undo();
     };
-    
+
     /**
     * Check if there are undoable changes.
     * @returns {boolean}
@@ -135,7 +135,7 @@ angular.module('todos').controller('MainCtrl', ['$scope', '$routeParams', 'realt
     $scope.redo = function () {
       realtimeDocument.getModel().redo();
     };
-    
+
     /**
     * Check if there are redoable changes.
     * @returns {boolean}
@@ -156,7 +156,7 @@ angular.module('todos').controller('CollaboratorsCtrl', ['$scope', 'config',
    * @constructor
    */
   function ($scope, config) {
-    var appId = config.clientId.split('.').shift();
+    var appId = config.clientId.match(/^(\d+)/)[0];
 
     var collaboratorListener = function () {
       $scope.$apply(function () {
