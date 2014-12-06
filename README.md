@@ -30,29 +30,29 @@ Fetch the source for the app:
 
 First, you need to activate the Drive API for your app. You can do it by configuring your API project in the Google APIs Console.
 
-- Create an API project in the [Google APIs Console](https://developers.google.com/console).
-- Select the "Services" tab and enable the Drive API.
-- Select the "API Access" tab in your API project, and click "Create an OAuth 2.0 client ID".
-- In the Branding Information section, provide a name for your application (e.g. "Realtime Tasks"), and click Next. Providing a product logo is optional.
-- In the Client ID Settings section, do the following:
-  - Select Web application for the Application type
-  - Click the more options link next to the heading, Your site or hostname.
-  - List your hostname in the Authorized Redirect URIs and JavaScript Origins fields.
-  - Click Create Client ID.
-- In the **API Access** page, locate the section **Client ID for Web applications** and note the **Client ID** value.
-- List your hostname in JavaScript origins in the Client ID settings.
-- Go to the **Drive SDK** page and copy the **App ID**.
+- Create an API project in the [Google Developers Console](https://developers.google.com/console).
+- Select the tab "APIs & Auth > APIs" and enable the Drive API and Drive SDK.
+- Select the tab "APIs & Auth > Credentials" and click "Create new Client ID".
+- In the resulting dialog, do the following:
+  - Select "Web application" for the Application type
+  - List your hostname in the "Authorized JavaScript Origins" field.
+  - Click "Create Client ID".
+- Note the **Client ID** string created.
+- Select the tab "APIs & Auth > Consent screen" and ensure the Email Address and Product Name are set.
 
-To enable integration with the Drive UI, go the **Drive SDK** page.
+To enable integration with the Drive UI, including the sharing dialog, perform the following steps.
 
-- Set the **Open URL** to `http://YOURHOST/#/todos/{ids}/?user={userId}` 
+- Select the tab "APIs & Auth > APIs" and click the gear icon next to "Drive SDK".
+- Click the link to return to the original console.
+- Fill out the Application Name and upload at least one Application Icon.
+- Set the **Open URL** to `http://YOURHOST/#/todos/{ids}/?user={userId}`
 - Check the **Create With** option and set the **New URL** to `http://YOURHOST/#/create?user={userId}`
 
 Adjust the above URLs as needed for the correct hostname or path. Localhost is currently not allowed.
 
 ### Setup your App information
 
-You should now have your **Client ID** and your **App ID**.  Update the `CONFIG` object in `app.js` appropriately.
+Update the `CONFIG` object in `app.js` with the **Client ID** string you created.
 
 ### Deploy, run that's it!
 
