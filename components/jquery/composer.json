@@ -21,15 +21,6 @@
         "robloach/component-installer": "*"
     },
     "extra": {
-        "component": {
-            "scripts": [
-                "jquery.js"
-            ],
-            "files": [
-                "jquery.min.js",
-                "jquery-migrate.js",
-                "jquery-migrate.min.js"
-            ]
-        }
+        "js": "jquery.js"
     }
 }
