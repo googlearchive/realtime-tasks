@@ -30,10 +30,20 @@
     <script src="//apis.google.com/js/client:plusone.js"></script>
     <script src="//apis.google.com/js/api.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/angular/angular.js"></script>
 
-    <script src="scripts/scripts.js"></script>
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/storage.js"></script>
+    <script src="scripts/directives/on-blur.js"></script>
+    <script src="scripts/directives/collaborative.js"></script>
+    <script src="scripts/directives/focus.js"></script>
+
+    <script src="scripts/controllers/install.js"></script>
+    <script src="scripts/controllers/create.js"></script>
+    <script src="scripts/controllers/todos.js"></script>
+    <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
     <script>
