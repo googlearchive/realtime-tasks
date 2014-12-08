@@ -25,5 +25,6 @@
     "$" : false,
     "CONFIG": true,
     "app": true
-  }
+  },
+  "white": false
 }
